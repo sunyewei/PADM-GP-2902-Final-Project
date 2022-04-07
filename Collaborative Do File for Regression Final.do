@@ -87,3 +87,5 @@ xtreg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em srf_area gdpcap i.year, fe i
 // Fixed effect for simple regression, srf_area and gdpcap are not significant
 
 xtreg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em lg_srf_area lg_gdpcap lg_int_gdp_srf i.year, fe i(cnnum)
+
+areg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em lg_srf_area lg_gdpcap lg_int_gdp_srf i.year, fe i(cnnum)
