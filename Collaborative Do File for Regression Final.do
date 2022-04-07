@@ -45,6 +45,7 @@ replace srf_area = r(mean) if srf_area ==.
 
 save 20220331-DataCleaningALL.dta, replace
 
+
 ***2022.3.31 Functional Form***
 clear all
 use "$datadir\20220331-DataCleaningALL.dta"
@@ -74,4 +75,15 @@ reg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em lg_srf_area lg_gdpcap i.year
 
 gen lg_int_gdp_srf = lg_srf_area * lg_gdpcap
 reg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em lg_srf_area lg_gdpcap lg_int_gdp_srf i.year
+estat imtest, white
 // The final(maybe) functional form for simple regression
+
+
+***2022.4.06 Fixed Effect***
+* Step 4 Fixed Effect
+egen cnnum = group( cn ) // Destring the country identifier
+xtset cnnum year
+xtreg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em srf_area gdpcap i.year, fe i(cnnum)
+// Fixed effect for simple regression, srf_area and gdpcap are not significant
+
+xtreg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em lg_srf_area lg_gdpcap lg_int_gdp_srf i.year, fe i(cnnum)
