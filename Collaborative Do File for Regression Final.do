@@ -67,14 +67,14 @@ twoway scatter res1 year // The graph indicates that there's no serial correlati
 twoway scatter res1 gdpcap
 
 * Step 3 Functional Form
-foreach var of varlist srf_area gdpcap {
+foreach var of varlist srf_area gdpcap co2_em{
     gen lg_`var' = log(`var')
 }
 reg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em lg_srf_area lg_gdpcap i.year
 // The p values for srf_area gdpcap are still not statistically significant
 
 gen lg_int_gdp_srf = lg_srf_area * lg_gdpcap
-reg pop_grwth frtl_rte lifeexp cvl_lib_ind co2_em lg_srf_area lg_gdpcap lg_int_gdp_srf i.year
+reg pop_grwth frtl_rte lifeexp  co2_em lg_srf_area lg_gdpcap lg_int_gdp_srf i.year
 estat imtest, white
 // The final(maybe) functional form for simple regression
 

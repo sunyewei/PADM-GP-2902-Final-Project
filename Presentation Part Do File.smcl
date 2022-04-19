@@ -1,0 +1,196 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}E:\NYU Master\Semester 2\PADM-GP 2902 Regression and intro to economtrics\Final Project\Presentation Part Do File.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}18 Apr 2022, 22:30:46
+{txt}
+{com}. use "$datadir\20220324-DataCleaning.dta"
+{txt}
+{com}. 
+. sum gdpcap
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}gdpcap {c |}{res}        521    8722.309    13895.74   98.03187   102863.1
+{txt}
+{com}. return list
+
+{txt}scalars:
+                  r(N) =  {res}521
+              {txt}r(sum_w) =  {res}521
+               {txt}r(mean) =  {res}8722.309087229782
+                {txt}r(Var) =  {res}193091685.6177301
+                 {txt}r(sd) =  {res}13895.74343522973
+                {txt}r(min) =  {res}98.03186798095703
+                {txt}r(max) =  {res}102863.09375
+                {txt}r(sum) =  {res}4544323.034446716
+{txt}
+{com}. replace gdpcap = r(mean) if gdpcap ==.
+{txt}(10 real changes made)
+
+{com}. // replace missing values in gdpcap to their group mean (10 real changes made)
+. 
+. sum frtl_rte
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}frtl_rte {c |}{res}        531    3.365119    1.716845       .939      8.667
+{txt}
+{com}. return list
+
+{txt}scalars:
+                  r(N) =  {res}531
+              {txt}r(sum_w) =  {res}531
+               {txt}r(mean) =  {res}3.365118922262317
+                {txt}r(Var) =  {res}2.947556780599
+                 {txt}r(sd) =  {res}1.716845007739196
+                {txt}r(min) =  {res}.9390000104904175
+                {txt}r(max) =  {res}8.666999816894531
+                {txt}r(sum) =  {res}1786.878147721291
+{txt}
+{com}. replace frtl_rte = r(mean) if frtl_rte ==.
+{txt}(0 real changes made)
+
+{com}. // replace missing values in frtl_rte to their group mean (0 real changes made)
+. 
+. sum lifeexp
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}lifeexp {c |}{res}        531    67.15366    10.01457   32.61156   82.97805
+{txt}
+{com}. return list
+
+{txt}scalars:
+                  r(N) =  {res}531
+              {txt}r(sum_w) =  {res}531
+               {txt}r(mean) =  {res}67.15365892974221
+                {txt}r(Var) =  {res}100.2916204406897
+                 {txt}r(sd) =  {res}10.01457040719619
+                {txt}r(min) =  {res}32.6115608215332
+                {txt}r(max) =  {res}82.97805023193359
+                {txt}r(sum) =  {res}35658.59289169312
+{txt}
+{com}. replace lifeexp = r(mean) if lifeexp ==.
+{txt}(0 real changes made)
+
+{com}. // replace missing values in lifeexp to their group mean (0 real changes made)
+. 
+. sum co2_em
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}co2_em {c |}{res}        505    4.605212    6.485877   .0181349   58.52217
+{txt}
+{com}. return list
+
+{txt}scalars:
+                  r(N) =  {res}505
+              {txt}r(sum_w) =  {res}505
+               {txt}r(mean) =  {res}4.605212292503012
+                {txt}r(Var) =  {res}42.06659817517209
+                 {txt}r(sd) =  {res}6.485876823928441
+                {txt}r(min) =  {res}.0181349068880081
+                {txt}r(max) =  {res}58.52217102050781
+                {txt}r(sum) =  {res}2325.632207714021
+{txt}
+{com}. replace co2_em = r(mean) if co2_em ==.
+{txt}(26 real changes made)
+
+{com}. // replace missing values in co2_em to their group mean (26 real changes made)
+. 
+. tabstat pop_grwth gdpcap frtl_rte lifeexp co2_em, stat(n mean sd min max q) col(stat)
+
+{txt}{ralign 12:Variable} {...}
+{c |}         N      Mean        SD       Min       Max       p25       p50       p75
+{hline 13}{c +}{hline 80}
+{ralign 12:pop_grwth} {...}
+{c |}{...}
+ {res}      531  1.597279  1.360082 -2.096943  10.39837  .5846527  1.519073  2.513898
+{txt}{ralign 12:gdpcap} {...}
+{c |}{...}
+ {res}      531  8722.309  13764.03  98.03187  102863.1  762.8839  2506.185  10227.75
+{txt}{ralign 12:frtl_rte} {...}
+{c |}{...}
+ {res}      531  3.365119  1.716845      .939     8.667      1.92     2.837     4.654
+{txt}{ralign 12:lifeexp} {...}
+{c |}{...}
+ {res}      531  67.15366  10.01457  32.61156  82.97805  61.18732  69.67949  74.60244
+{txt}{ralign 12:co2_em} {...}
+{c |}{...}
+ {res}      531  4.605212  6.324789  .0181349  58.52217  .5982311  2.278387  6.316496
+{txt}{hline 13}{c BT}{hline 80}
+
+{com}. 
+. sum2docx pop_grwth gdpcap frtl_rte lifeexp co2_em using "$datadir\table1.docx", replace stats(N mean sd min(%9.0g) max(%9.0g) p25(%9.0g) median(%9.0g) p75(%9.0g)) title("Descriptive Statistics")
+{res}{txt}summary statistics have been written to file {browse "E:\NYU Master\Semester 2\PADM-GP 2902 Regression and intro to economtrics\Final Project\table1.docx"}
+
+{com}. 
+. hist gdpcap, freq normal title("Distribuation of GDP Per Capita")
+{txt}(bin={res}23{txt}, start={res}98.031868{txt}, width={res}4468.0462{txt})
+{res}{txt}
+{com}. graph export "$datadir\DistribuationGDP.png", replace
+{txt}{p 0 4 2}
+file {bf}
+E:\NYU Master\Semester 2\PADM-GP 2902 Regression and intro to economtrics\Final Project\DistribuationGDP.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. hist co2_em, freq normal title("Distribuation of CO2 Emission")
+{txt}(bin={res}23{txt}, start={res}.01813491{txt}, width={res}2.5436537{txt})
+{res}{txt}
+{com}. graph export "$datadir\DistribuationCO2.png", replace
+{txt}{p 0 4 2}
+file {bf}
+E:\NYU Master\Semester 2\PADM-GP 2902 Regression and intro to economtrics\Final Project\DistribuationCO2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. gen lg_gdpcap = log(gdpcap)
+{txt}
+{com}. gen lg_co2_em = log(co2_em)
+{txt}
+{com}. gen int_gdpco2 = log(gdpcap) * log(co2_em)
+{txt}
+{com}. 
+. hist lg_gdpcap, freq normal title("Distribuation of Log_GDP Per Capita")
+{txt}(bin={res}23{txt}, start={res}4.5852928{txt}, width={res}.30242874{txt})
+{res}{txt}
+{com}. graph export "$datadir\DistribuationLogGDP.png", replace
+{txt}{p 0 4 2}
+file {bf}
+E:\NYU Master\Semester 2\PADM-GP 2902 Regression and intro to economtrics\Final Project\DistribuationLogGDP.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. hist lg_co2_em, freq normal title("Distribuation of Log_CO2 Emission")
+{txt}(bin={res}23{txt}, start={res}-4.0099168{txt}, width={res}.35127488{txt})
+{res}{txt}
+{com}. graph export "$datadir\DistribuationLogCO2.png", replace
+{txt}{p 0 4 2}
+file {bf}
+E:\NYU Master\Semester 2\PADM-GP 2902 Regression and intro to economtrics\Final Project\DistribuationLogCO2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}E:\NYU Master\Semester 2\PADM-GP 2902 Regression and intro to economtrics\Final Project\Presentation Part Do File.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}18 Apr 2022, 22:31:01
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
